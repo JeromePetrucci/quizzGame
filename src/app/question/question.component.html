@@ -49,10 +49,8 @@
             (click)="onAnswer(true, quest.correctAnswer)"
             disabled="{{answered}}">
                 {{quest.correctAnswer}}
-            </button>
-            
+            </button> 
         </div>
-        
     </div>
     <div class="question-question">{{result}}</div>
     <button *ngIf="answered" class="question-answer" mat-raised-button 

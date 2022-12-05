@@ -35,19 +35,23 @@
     min-width: 12%;
     padding: 20px;
     margin: 5px;
-    background-color:rgb(46, 89, 169);
+    background-color:rgb(68, 108, 183);
+    color: black;
 }
 
 .blue {
-    background-color: rgb(46, 89, 169);
+    background-color: rgb(68, 108, 183);
+    color: black;
 }
 
 .green {
     background-color: green;
+    color: black;
 }
 
 .red {
     background-color: rgb(200, 31, 26);
+    color: black;
 }
 
 .selected-category {margin: 0}
