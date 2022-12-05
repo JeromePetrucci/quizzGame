@@ -1,0 +1,45 @@
+.question{
+    height: 400px;
+    width: 100%;
+    margin :0%;
+    padding: 0%;
+    text-align: center;
+}
+
+.question-title {
+    color: rgb(51, 171, 171);
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+}
+
+.question-question{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.question-answers{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-left: 25% ;
+    margin-right: 25%;
+}
+
+.question-answer{
+    height: auto;
+    width: auto;
+    min-height: 12%;
+    min-width: 12%;
+    padding: 20px;
+    margin: 5px;
+    background-color:rgb(46, 89, 169);
+}
+
+.button {
+    color: rgb(114, 114, 204);
+}
+
+.selected-category {margin: 0}

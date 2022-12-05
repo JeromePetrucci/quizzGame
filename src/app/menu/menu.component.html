@@ -1,0 +1,27 @@
+<div class="menu">
+    <div class="menu-title">Welcome to quizzGame</div>
+    <button mat-raised-button color="warn" routerLink="/question" (click)="setCategories()">New Question</button>
+    
+    
+    <div class="menu-category">
+      <div>
+        <div class="menu-category-title">Categories</div>
+        <mat-checkbox [checked]="AllChecked" (change)="setAll($event.checked)"> 
+          All
+        </mat-checkbox>
+        <div *ngFor="let categorie of categories" class="menu-categories">
+          <mat-checkbox  (change)="onChage(categorie)" [checked]="categorie.completed">
+            {{categorie.name}}
+          </mat-checkbox >
+        </div>
+      </div>
+      <div>
+        <div class="menu-category-title">Difficulties</div>
+        <mat-radio-group class="menu-categories" [(ngModel)]="selectedDifficulty">
+          <div *ngFor = "let difficulty of difficulties" >
+            <mat-radio-button [value]="difficulty">{{difficulty}} </mat-radio-button>
+          </div>
+        </mat-radio-group> 
+      </div>
+    </div> 
+</div>

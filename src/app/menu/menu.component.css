@@ -1,0 +1,29 @@
+.menu{
+    color: rgb(51, 171, 171);
+    height: 700px;
+    width: 100%;
+    margin :0%;
+    padding: 0%;
+    text-align: center;
+}
+
+.menu-category{
+    width:20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-title{
+    text-align: center;
+    padding: 40px;
+    margin: 0;
+}
+
+.menu-category-title{
+    text-align: left;
+    margin: 5px;
+}
+
+.menu-categories{
+    text-align: left;
+}
