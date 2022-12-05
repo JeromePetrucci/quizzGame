@@ -38,8 +38,16 @@
     background-color:rgb(46, 89, 169);
 }
 
-.button {
-    color: rgb(114, 114, 204);
+.blue {
+    background-color: rgb(46, 89, 169);
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: rgb(200, 31, 26);
 }
 
 .selected-category {margin: 0}

@@ -11,6 +11,7 @@ export class QuestionService {
   allCategories : boolean = false;
   difficulty : string = "all"
   constructor(private http: HttpClient) {}
+
   //request: string = 'https://the-trivia-api.com/api/questions?limit=1';
 
   setCategories (listCategory : Category[] ) : void {

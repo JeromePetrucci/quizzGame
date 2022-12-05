@@ -29,21 +29,32 @@ export class QuestionComponent {
   
   //result
   result : string = "loading ...";
+  answered : boolean = false;
+  isCorrect : boolean = false;
 
   //information of menu selection
   categoryAll : boolean = this.questionService.allCategories || this.questionService.categories.length < 1;
   categories : Category[] = this.questionService.categories;
   difficultySelected: string = this.questionService.difficulty;
 
-  //relaod a new question
-  nextQuestion(result : boolean, answer : string) : void {
-    if (result){
-      this.counterGoodAnswer += 1;
-      this.result = "Well Done !!! the answer was " + answer;
-    }
-    else {this.result = "Wrong, the answer was " + answer}
-
+  onAnswer (correct: boolean, correctAnswer: string) {
+    this.answered = true;
     this.questionCounter +=1;
+    this.isCorrect = correct
+
+    if (correct){
+      this.counterGoodAnswer += 1;
+      this.result = "Well Done !!! the answer was " +  correctAnswer;
+    }
+    else {this.result = "Wrong, the answer was " +  correctAnswer};
+    //nextQuestion();
+  }
+
+  //relaod a new question
+  nextQuestion() : void {
+    this.answered = false;
+    this.result = "loading ...";
+
     this.question = this.questionService.getQuestion();
     this.randomI = this.getRandomInt();
     this.index0  = this.getIndex(0);
@@ -65,9 +76,7 @@ export class QuestionComponent {
     return Math.floor(Math.random() * (max + 1));
 }
 
-  
   ngOnInit(): void {
     this.question = this.questionService.getQuestion();
-   
 }
 }
