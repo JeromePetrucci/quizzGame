@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Category, Question } from './question';
+import { Answer, Category, Question } from './question';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,6 @@ export class QuestionService {
   allCategories : boolean = false;
   difficulty : string = "all"
   constructor(private http: HttpClient) {}
-
-  //request: string = 'https://the-trivia-api.com/api/questions?limit=1';
 
   setCategories (listCategory : Category[] ) : void {
     this.categories = listCategory;
@@ -30,6 +29,31 @@ export class QuestionService {
     if (this.difficulty != "All") {
       newRequest = newRequest + "&difficulty=" + this.difficulty;
     }
+    let url: string = 'http://127.0.0.1:8081/test';
+    this.http.get<string>(url);
     return this.http.get<Question[]>(newRequest);
+    
+  }
+  
+  addQuestion(newQuestion: Question) {
+    console.log("in addQuestion")
+    let url: string = 'http://localhost:8081/addQuestion';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'});
+  let options = { headers: headers };
+    let add: Observable<void> = this.http.post<void>(url, newQuestion, options);
+    add.subscribe(x => {console.log("question send")})
+  }
+
+  addAnswer(newAnswer: Answer) {
+    console.log("in addAnswer")
+    let url: string = 'http://localhost:8081/addAnswer';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'});
+    let options = { headers: headers };
+    let add: Observable<void> = this.http.post<void>(url, newAnswer, options);
+    add.subscribe(x => {console.log("answer send")})
   }
 }

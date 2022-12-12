@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QuestionService } from '../question.service';
 import { Category } from '../question';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -48,6 +49,10 @@ setCategories() {
   this.categories.forEach( c => {if (c.completed) { categoryList.push(c)}})
   this.questionService.setCategories(categoryList)
   this.questionService.difficulty = this.selectedDifficulty;
+}
+
+
+ngOnInit(): void {
 }
 
 }

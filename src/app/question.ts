@@ -13,12 +13,20 @@ tags : string[],
 type: string, //"Multiple Choice"
 difficulty: string,//"easy"
 regions: string[],//	[]
+isNiche: boolean,//false
 }
 
 export interface Category{
     name:string,
     completed: boolean,
     requestName: string,
+}
+
+export interface Answer{
+    category:string,
+    difficulty: string,
+    answer: boolean,
+    id: string,
 }
 
 export let EMPTY_QUESTION: Question = {
@@ -31,5 +39,6 @@ export let EMPTY_QUESTION: Question = {
     type: "", 
     difficulty: "",
     regions: [],
+    isNiche:false,
 }
 

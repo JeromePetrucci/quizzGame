@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Category, Question } from '../question';
+import { Answer, Category, Question } from '../question';
 import { QuestionService } from '../question.service'
 
 @Component({
@@ -19,6 +19,7 @@ export class QuestionComponent {
   //counters
   questionCounter : number = 0;
   counterGoodAnswer : number = 0;
+  percentage: number = this.getPercentage();
 
   //answers' index
   randomI: number = this.getRandomInt();
@@ -37,17 +38,19 @@ export class QuestionComponent {
   categories : Category[] = this.questionService.categories;
   difficultySelected: string = this.questionService.difficulty;
 
-  onAnswer (correct: boolean, correctAnswer: string) {
+  onAnswer (correct: boolean, question: Question) {
     this.answered = true;
     this.questionCounter +=1;
     this.isCorrect = correct
 
     if (correct){
       this.counterGoodAnswer += 1;
-      this.result = "Well Done !!! the answer was " +  correctAnswer;
+      this.result = "Well Done !!! the answer was " +  question.correctAnswer;
     }
-    else {this.result = "Wrong, the answer was " +  correctAnswer};
-    //nextQuestion();
+    else {this.result = "Wrong, the answer was " +   question.correctAnswer};
+
+    this.percentage = this.getPercentage();
+    this.sendQuestion(question, correct);
   }
 
   //relaod a new question
@@ -74,6 +77,21 @@ export class QuestionComponent {
   getRandomInt(): number {
     let max = Math.floor(3);
     return Math.floor(Math.random() * (max + 1));
+}
+
+getPercentage() :number {
+  if (this.questionCounter === 0 ){return 0}
+  else {
+    return Math.round((this.counterGoodAnswer / this.questionCounter )*10000)/100;
+  }
+}
+
+sendQuestion(question: Question, answer: boolean):void {
+  console.log ("sending");
+  this.questionService.addQuestion(question);
+  let newAnswer: Answer = {category: question.category, answer:answer, difficulty:question.difficulty, id:question.id}
+  this.questionService.addAnswer(newAnswer)
+  
 }
 
   ngOnInit(): void {
