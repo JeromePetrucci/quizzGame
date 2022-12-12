@@ -1,5 +1,5 @@
 export interface Question{
-    category: string,	//"Society & Culture"
+    category: string,
 id: string,	//"622a1c367cc59eab6f95011b"
 correctAnswer: string,	//"Holy Grail"
 incorrectAnswers :string[]	,
@@ -27,6 +27,14 @@ export interface Answer{
     difficulty: string,
     answer: boolean,
     id: string,
+}
+
+export interface Stat{
+    category:string,
+    difficulty: string,
+    questions: number,
+    good_answers: number,
+    percentage: number,
 }
 
 export let EMPTY_QUESTION: Question = {

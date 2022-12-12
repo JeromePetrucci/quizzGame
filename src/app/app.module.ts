@@ -9,11 +9,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio'; 
+import {MatTableModule} from '@angular/material/table'; 
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { QuestionComponent } from './question/question.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { StatComponent } from './stat/stat.component';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     MenuComponent,
     QuestionComponent,
     TopBarComponent,
+    StatComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     [RouterModule.forRoot([
       { path: '', component: MenuComponent },
       { path: 'question', component: QuestionComponent },
+      { path: 'stat', component: StatComponent },
       ])
     ],
     HttpClientModule,
@@ -37,6 +41,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     MatCheckboxModule,
     MatRadioModule,
     FormsModule,
+    MatTableModule,
   ],
   exports: [RouterModule],
   providers: [],

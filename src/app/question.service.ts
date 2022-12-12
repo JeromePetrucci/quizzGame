@@ -10,7 +10,8 @@ import { Answer, Category, Question } from './question';
 export class QuestionService {
   categories: Category[] = [];
   allCategories : boolean = false;
-  difficulty : string = "all"
+  difficulty : string = "all";
+  listAnswer : Answer[] = [];
   constructor(private http: HttpClient) {}
 
   setCategories (listCategory : Category[] ) : void {
@@ -55,5 +56,12 @@ export class QuestionService {
     let options = { headers: headers };
     let add: Observable<void> = this.http.post<void>(url, newAnswer, options);
     add.subscribe(x => {console.log("answer send")})
+  }
+
+  getStat() :Observable<Answer[]> {
+    let url: string = 'http://localhost:8081/getStat';
+    
+    return this.http.get<Answer[]>(url);
+   
   }
 }
