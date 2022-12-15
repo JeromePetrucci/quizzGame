@@ -37,7 +37,6 @@ export class QuestionService {
   }
   
   addQuestion(newQuestion: Question) {
-    console.log("in addQuestion")
     let url: string = 'http://localhost:8081/addQuestion';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -48,7 +47,6 @@ export class QuestionService {
   }
 
   addAnswer(newAnswer: Answer) {
-    console.log("in addAnswer")
     let url: string = 'http://localhost:8081/addAnswer';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -60,7 +58,6 @@ export class QuestionService {
 
   getStat() :Observable<Answer[]> {
     let url: string = 'http://localhost:8081/getStat';
-    
     return this.http.get<Answer[]>(url);
    
   }

@@ -35,6 +35,7 @@ export interface Stat{
     questions: number,
     good_answers: number,
     percentage: number,
+    allStat: Stat[],
 }
 
 export let EMPTY_QUESTION: Question = {
