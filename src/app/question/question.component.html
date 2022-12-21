@@ -10,6 +10,7 @@
     <div class="question-counter">Question(s) answered : {{questionCounter}}</div>
     <div class="question-counter">Good answer(s) : {{counterGoodAnswer}}</div>
     <div class="question-counter">Percentage : {{percentage}}%</div>
+    <div class="question-counter">Actual streak : {{actualRow.counter}} {{actualRow.type}}(s)</div>
     <div *ngFor="let quest of question | async">
         <div class="question-question" >Category : {{quest.category}}</div>
         <div class="question-question" >Difficulty : {{quest.difficulty}}</div>

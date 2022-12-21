@@ -20,6 +20,7 @@ export class QuestionComponent {
   questionCounter : number = 0;
   counterGoodAnswer : number = 0;
   percentage: number = this.getPercentage();
+  actualRow:{counter:number,type:"win"|"lose"} = {counter : 0, type : "win"}
 
   //answers' index
   randomI: number = this.getRandomInt();
@@ -46,8 +47,20 @@ export class QuestionComponent {
     if (correct){
       this.counterGoodAnswer += 1;
       this.result = "Well Done !!! the answer was " +  question.correctAnswer;
+      if (this.actualRow.type === "win") {this.actualRow.counter += 1}
+      else {
+        this.actualRow.type = "win";
+        this.actualRow.counter = 1;
+      }
     }
-    else {this.result = "Wrong, the answer was " +   question.correctAnswer};
+    else {
+      this.result = "Wrong, the answer was " +   question.correctAnswer;
+      if (this.actualRow.type === "lose") {this.actualRow.counter += 1}
+      else {
+        this.actualRow.type = "lose";
+        this.actualRow.counter = 1;
+      }
+    };
 
     this.percentage = this.getPercentage();
     this.sendQuestion(question, correct);

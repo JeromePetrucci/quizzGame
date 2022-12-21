@@ -16,7 +16,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { QuestionComponent } from './question/question.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
 import { StatComponent } from './stat/stat.component';
 
 
@@ -25,7 +24,6 @@ import { StatComponent } from './stat/stat.component';
     AppComponent,
     MenuComponent,
     QuestionComponent,
-    TopBarComponent,
     StatComponent,
   ],
   imports: [
