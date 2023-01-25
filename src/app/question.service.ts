@@ -12,6 +12,7 @@ export class QuestionService {
   allCategories : boolean = false;
   difficulty : string = "all";
   listAnswer : Answer[] = [];
+  quetionAsked : number = 0;
   constructor(private http: HttpClient) {}
 
   setCategories (listCategory : Category[] ) : void {
@@ -30,8 +31,6 @@ export class QuestionService {
     if (this.difficulty != "All") {
       newRequest = newRequest + "&difficulty=" + this.difficulty;
     }
-    let url: string = 'http://127.0.0.1:8081/test';
-    this.http.get<string>(url);
     return this.http.get<Question[]>(newRequest);
     
   }
@@ -46,14 +45,19 @@ export class QuestionService {
     add.subscribe(x => {console.log("question send")})
   }
 
-  addAnswer(newAnswer: Answer) {
+  addAnswer(newAnswer: Answer): number {
     let url: string = 'http://localhost:8081/addAnswer';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'});
     let options = { headers: headers };
-    let add: Observable<void> = this.http.post<void>(url, newAnswer, options);
-    add.subscribe(x => {console.log("answer send")})
+    let add: Observable<number> = this.http.post<number>(url, newAnswer, options);
+    
+    add.subscribe(x => {console.log("answer send");
+    this.quetionAsked = x;
+  })
+  return this.quetionAsked
+   
   }
 
   getStat() :Observable<Answer[]> {

@@ -15,6 +15,7 @@ export class QuestionComponent {
 
   //question
   question! :  Observable<Question[]> ;
+  alreadyAsked : number = 0;
 
   //counters
   questionCounter : number = 0;
@@ -30,7 +31,7 @@ export class QuestionComponent {
   index3 : boolean = this.getIndex(3);
   
   //result
-  result : string = "loading ...";
+  result : string = ""; //"loading ...";
   answered : boolean = false;
   isCorrect : boolean = false;
 
@@ -102,8 +103,8 @@ getPercentage() :number {
 sendQuestion(question: Question, answer: boolean):void {
   console.log ("sending");
   this.questionService.addQuestion(question);
-  let newAnswer: Answer = {category: question.category, answer:answer, difficulty:question.difficulty, id:question.id}
-  this.questionService.addAnswer(newAnswer)
+  let newAnswer: Answer = {category: question.category, answer:answer, difficulty:question.difficulty, id:question.id, asked:1}
+  this.alreadyAsked = this.questionService.addAnswer(newAnswer)
   
 }
 

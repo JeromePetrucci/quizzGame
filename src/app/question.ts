@@ -27,6 +27,7 @@ export interface Answer{
     difficulty: string,
     answer: boolean,
     id: string,
+    asked: number,
 }
 
 export interface Stat{

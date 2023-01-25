@@ -1,21 +1,28 @@
-<button mat-raised-button color="primary" routerLink="">Menu</button>
+<!-- <button mat-raised-button color="primary" routerLink="">Menu</button> -->
+
 
 <div class="question">
-    <div class="question-title">Question </div>
-    <div *ngIf="categoryAll"  class="question-title"> Selected Categories : All </div>
-    <div *ngIf="!categoryAll"  class="question-title"> Selected Categories : 
-        <p *ngFor= "let category of categories" class="selected-category">{{category.name}}</p> 
+    <img src="../../assets/logo_qG.png" routerLink="">
+    
+    <!-- <div class="question-title">Question </div> -->
+    <!-- Information of this run -->
+    <div class="question-div">
+    <div class="question-info">
+        <div *ngIf="categoryAll"  class="question-title"> Selected Categories : All </div>
+        <div *ngIf="!categoryAll"  class="question-title"> Selected Categories : 
+            <p *ngFor= "let category of categories" class="selected-category">{{category.name}}</p> 
+        </div>
+        <div class="question-title"> Selected difficulty : {{difficultySelected}} </div> 
+        <div class="question-counter">Question(s) answered : {{questionCounter}}</div>
+        <div class="question-counter">Good answer(s) : {{counterGoodAnswer}}</div>
+        <div class="question-counter">Percentage : {{percentage}}%</div>
+        <div class="question-counter">Actual streak : {{actualRow.counter}} {{actualRow.type}}(s)</div>
     </div>
-    <div class="question-title"> Selected difficulty : {{difficultySelected}} </div> 
-    <div class="question-counter">Question(s) answered : {{questionCounter}}</div>
-    <div class="question-counter">Good answer(s) : {{counterGoodAnswer}}</div>
-    <div class="question-counter">Percentage : {{percentage}}%</div>
-    <div class="question-counter">Actual streak : {{actualRow.counter}} {{actualRow.type}}(s)</div>
-    <div *ngFor="let quest of question | async">
+    <!-- Question -->
+    <div class="question-part" *ngFor="let quest of question | async">
         <div class="question-question" >Category : {{quest.category}}</div>
         <div class="question-question" >Difficulty : {{quest.difficulty}}</div>
         <div class="question-question" >{{quest.question}}</div>
-        <!-- <button mat-raised-button  class="question-answers" color="primary" (click)="sendQuestion(quest)">Add this question</button> -->
         <!-- ANSWERS -->
         <div class="question-answers">
             <button *ngIf="index0" disabled="{{answered}}" class="question-answer good" mat-raised-button  
@@ -29,7 +36,7 @@
                 {{quest.incorrectAnswers[0]}}
             </button>
             <button *ngIf="index1" class="question-answer good" disabled="{{answered}}" mat-raised-button  
-            (click)="onAnswer(true, quest)"
+            (click)="onAnswer(true, quest)" 
             [ngClass]="{'blue' : !answered, 'green': answered}">
                 {{quest.correctAnswer}}
             </button>
@@ -55,12 +62,13 @@
                 {{quest.correctAnswer}}
             </button> 
         </div>
-    </div>
-    <div class="question-question">{{result}}</div>
-    <button *ngIf="answered" class="question-answer" mat-raised-button 
+        <div class="question-question">{{result}}</div>
+            <button *ngIf="answered" class="question-answer" mat-raised-button 
             (click)="nextQuestion()">
                 Next Question
             </button>
+        </div>
+    </div>
     
 </div>
 
