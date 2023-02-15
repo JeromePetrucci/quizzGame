@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { QuestionComponent } from './question/question.component';
 import { StatComponent } from './stat/stat.component';
+import { CapitalComponent } from './capital/capital.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { StatComponent } from './stat/stat.component';
     MenuComponent,
     QuestionComponent,
     StatComponent,
+    CapitalComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { StatComponent } from './stat/stat.component';
       { path: '', component: MenuComponent },
       { path: 'question', component: QuestionComponent },
       { path: 'stat', component: StatComponent },
+      { path: 'capital', component: CapitalComponent },
       ])
     ],
     HttpClientModule,

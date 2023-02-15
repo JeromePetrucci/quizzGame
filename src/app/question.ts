@@ -30,6 +30,12 @@ export interface Answer{
     asked: number,
 }
 
+export interface Capital{
+    id: number,
+    country:string,
+    capital: string
+}
+
 export interface Stat{
     category:string,
     difficulty: string,

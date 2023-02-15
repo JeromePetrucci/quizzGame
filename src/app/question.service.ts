@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Answer, Category, Question } from './question';
+import { Answer, Capital, Category, Question } from './question';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +63,12 @@ export class QuestionService {
   getStat() :Observable<Answer[]> {
     let url: string = 'http://localhost:8081/getStat';
     return this.http.get<Answer[]>(url);
+   
+  }
+
+  getCapitals() :Observable<Capital[]> {
+    let url: string = 'http://localhost:8081/getCapitals';
+    return this.http.get<Capital[]>(url);
    
   }
 }
