@@ -12,6 +12,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatTableModule} from '@angular/material/table'; 
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -47,6 +48,7 @@ import { CapitalComponent } from './capital/capital.component';
     MatTableModule,
     MatIconModule,
     BrowserAnimationsModule,
+    MatSlideToggleModule,
   ],
   exports: [RouterModule],
   providers: [],

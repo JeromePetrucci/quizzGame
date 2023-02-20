@@ -24,7 +24,7 @@
         <div class="question-question" >{{quest.question}}</div>
         <!-- ANSWERS -->
         <div class="question-answers">
-            <button *ngIf="index0" disabled="{{answered}}" class="question-answer good" mat-raised-button  
+            <button *ngIf="index0" disabled="{{answered}}" class="question-answer" mat-raised-button  
             [ngClass]="{'blue' : !answered, 'green': answered}"
             (click)="onAnswer(true, quest)">
                 {{quest.correctAnswer}}
@@ -34,7 +34,7 @@
             (click)="onAnswer(false, quest)">
                 {{quest.incorrectAnswers[0]}}
             </button>
-            <button *ngIf="index1" class="question-answer good" disabled="{{answered}}" mat-raised-button  
+            <button *ngIf="index1" class="question-answer" disabled="{{answered}}" mat-raised-button  
             (click)="onAnswer(true, quest)" 
             [ngClass]="{'blue' : !answered, 'green': answered}">
                 {{quest.correctAnswer}}
@@ -44,7 +44,7 @@
             [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}">
                 {{quest.incorrectAnswers[1]}}
             </button>
-            <button *ngIf="index2" disabled="{{answered}}" class="question-answer good" mat-raised-button
+            <button *ngIf="index2" disabled="{{answered}}" class="question-answer" mat-raised-button
             [ngClass]="{'blue' : !answered, 'green': answered }"
             (click)="onAnswer(true, quest)">
                 {{quest.correctAnswer}}
@@ -54,7 +54,7 @@
             disabled="{{answered}}">
                 {{quest.incorrectAnswers[2]}}
             </button>
-            <button *ngIf="index3" class="question-answer good" mat-raised-button
+            <button *ngIf="index3" class="question-answer" mat-raised-button
             [ngClass]="{'blue' : !answered, 'green': answered}"
             (click)="onAnswer(true, quest)"
             disabled="{{answered}}">

@@ -12,11 +12,18 @@ img{
     cursor: pointer;
 }
 
+.capital-question{
+    margin: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
 .capital-answers{
     display: flex;
     gap: 10px;
     justify-content: center;
     max-width: 600px;
+    margin: 10%;
 }
 
 .capital-answer{

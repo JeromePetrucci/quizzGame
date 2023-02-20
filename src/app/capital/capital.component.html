@@ -1,61 +1,58 @@
 <div class="capital">
     <img src="../../assets/logo_qG.png" routerLink="">
-    
-    <!-- <p *ngFor= "let capital of listCapitals" class="selected-category">{{capital.country}}/{{capital.capital}}</p>  -->
-    <div>
-        <div class="capital-answers">Answered : {{counter}} / 197</div>
-        <div class="capital-answers">What is the capital city of {{correctReponse.country}} ?</div>
-    </div>
 
-    <div class="capital-answers">
+    <div class="capital-question">
+        <div>
+            <mat-slide-toggle [(ngModel)]="isCapital" disabled="{{!answered}}" color="primary">
+                Find the {{(isCapital) ? "Capital" : "Country"}}
+            </mat-slide-toggle>
 
-        <div class="capital-answers">
-            <button *ngIf="index0" disabled="{{answered}}" class="capital-answer good" mat-raised-button  
-            [ngClass]="{'blue' : !answered, 'green': answered}"
-            (click)="onAnswer(true)">
-                {{correctReponse.capital}}
+            <div class="capital-question">Find {{counter}} / 197 capitals</div>
+            <div class="capital-question">Answered : {{answerCounter}} </div>
+            <div *ngIf="isCapital" class="capital-question">What is the capital of {{correctReponse.country}} ?</div>
+            <div *ngIf="!isCapital" class="capital-question">{{correctReponse.capital}} is the capital of wich country ?
+            </div>
+        </div>
+
+        <div>
+            <button *ngIf="index0" disabled="{{answered}}" class="capital-answer" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true)">
+                {{(isCapital) ? correctReponse.capital : correctReponse.country}}
             </button>
-            <button class="capital-answer"  disabled="{{answered}}" mat-raised-button 
-            [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}"
-            (click)="onAnswer(false)">
-                {{otherResponse[0].capital}}
+            <button class="capital-answer" disabled="{{answered}}" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" (click)="onAnswer(false)">
+                {{(isCapital) ? otherResponse[0].capital : otherResponse[0].country}}
             </button>
-            <button *ngIf="index1" class="capital-answer good" disabled="{{answered}}" mat-raised-button  
-            (click)="onAnswer(true)" 
-            [ngClass]="{'blue' : !answered, 'green': answered}">
-                {{correctReponse.capital}}
+            <button *ngIf="index1" class="capital-answer" disabled="{{answered}}" mat-raised-button
+                (click)="onAnswer(true)" [ngClass]="{'blue' : !answered, 'green': answered}">
+                {{(isCapital) ? correctReponse.capital : correctReponse.country}}
             </button>
-            <button class="capital-answer" disabled="{{answered}}" mat-raised-button 
-            (click)="onAnswer(false)" 
-            [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}">
-                {{otherResponse[1].capital}}
+            <button class="capital-answer" disabled="{{answered}}" mat-raised-button (click)="onAnswer(false)"
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}">
+                {{(isCapital) ? otherResponse[1].capital : otherResponse[1].country}}
             </button>
-            <button *ngIf="index2" disabled="{{answered}}" class="capital-answer good" mat-raised-button
-            [ngClass]="{'blue' : !answered, 'green': answered }"
-            (click)="onAnswer(true)">
-                {{correctReponse.capital}}
+            <button *ngIf="index2" disabled="{{answered}}" class="capital-answer" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'green': answered }" (click)="onAnswer(true)">
+                {{(isCapital) ? correctReponse.capital : correctReponse.country}}
             </button>
             <button class="capital-answer" mat-raised-button (click)="onAnswer(false)"
-            [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}"
-            disabled="{{answered}}">
-                {{otherResponse[2].capital}}
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" disabled="{{answered}}">
+                {{(isCapital) ? otherResponse[2].capital : otherResponse[2].country}}
             </button>
-            <button *ngIf="index3" class="capital-answer good" mat-raised-button
-            [ngClass]="{'blue' : !answered, 'green': answered}"
-            (click)="onAnswer(true)"
-            disabled="{{answered}}">
-                {{correctReponse.capital}}
-            </button> 
+            <button *ngIf="index3" class="capital-answer" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true)" disabled="{{answered}}">
+                {{(isCapital) ? correctReponse.capital : correctReponse.country}}
+            </button>
         </div>
-        
+        <div>
+            <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextQuestion()">
+                Next Question
+            </button>
+        </div>
     </div>
-    <div class="capital-answers">
-        <button *ngIf="answered" class="capital-answer blue" mat-raised-button 
-        (click)="nextQuestion()">
-            Next Question
-        </button>
-    </div>
-       
-   
-    
+
+
+
+
+
 </div>
