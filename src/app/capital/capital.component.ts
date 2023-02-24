@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Capital } from '../question';
+import { Capital, EMPTY_CAPITAL } from '../question';
 import { QuestionService } from '../question.service';
 
 @Component({
@@ -82,8 +82,8 @@ export class CapitalComponent {
   listCapitals: Capital[] = [];
   index: number = this.getRandomInt(197);
   wrongIndex: number[] = this.getWrongAnswerInd(this.index, 197)
-  correctReponse: Capital = { id: 0, country: "null", capital: "null" };
-  otherResponse: Capital[] = [{ id: 0, country: "null", capital: "null" }, { id: 0, country: "null", capital: "null" }, { id: 0, country: "null", capital: "null" }]
+  correctReponse: Capital = EMPTY_CAPITAL;
+  otherResponse: Capital[] = [EMPTY_CAPITAL, EMPTY_CAPITAL, EMPTY_CAPITAL]
   randomI = this.getRandomInt(3);
   index0 = this.getIndex(0);
   index1 = this.getIndex(1);

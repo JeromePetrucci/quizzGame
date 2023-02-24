@@ -1,0 +1,82 @@
+<!-- <img src="../../assets/logo_qG.png" routerLink=""> -->
+<div>
+    <!-- <button class="map-button" mat-raised-button color="warn" (click)="nextCountry()">Next</button> -->
+    <button class="map-button" mat-raised-button color="warn" routerLink="">Menu</button>
+
+    <div class="map-countainer">
+        <!-- <ejs-maps id='rn-container' [zoomSettings]='zoomSettings'>
+            <e-layers>
+                <e-layer [shapeData]='shapeData' [shapePropertyPath]='shapePropertyPath' [shapeDataPath]='shapeDataPath'
+                    [dataSource]='dataSource' [shapeSettings]='shapeSettings'>
+                    
+                </e-layer>
+            </e-layers>
+        </ejs-maps> -->
+        <div class="capital-question">
+            <div>
+
+                <div class="capital-question">Find {{counter}} / 197 countries</div>
+                <!-- <div class="capital-question">Answered : {{answerCounter}} </div> -->
+                <div class="capital-question">What is this country ?</div>
+
+            </div>
+        </div>
+
+        <div class="capital-question">
+            <button *ngIf="index0" disabled="{{answered}}" class="capital-answer" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true)">
+                {{correctReponse.country}}
+            </button>
+            <button class="capital-answer" disabled="{{answered}}" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" (click)="onAnswer(false)">
+                {{otherResponse[0].country}}
+            </button>
+            <button *ngIf="index1" class="capital-answer" disabled="{{answered}}" mat-raised-button
+                (click)="onAnswer(true)" [ngClass]="{'blue' : !answered, 'green': answered}">
+                {{correctReponse.country}}
+            </button>
+            <button class="capital-answer" disabled="{{answered}}" mat-raised-button (click)="onAnswer(false)"
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}">
+                {{otherResponse[1].country}}
+            </button>
+            <button *ngIf="index2" disabled="{{answered}}" class="capital-answer" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'green': answered }" (click)="onAnswer(true)">
+                {{correctReponse.country}}
+            </button>
+            <button class="capital-answer" mat-raised-button (click)="onAnswer(false)"
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" disabled="{{answered}}">
+                {{otherResponse[2].country}}
+            </button>
+            <button *ngIf="index3" class="capital-answer" mat-raised-button
+                [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true)" disabled="{{answered}}">
+                {{correctReponse.country}}
+            </button>
+        </div>
+        <div class="capital-question">
+            
+            <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextCountry()">
+                Next Question
+            </button>
+        </div>
+    </div>
+    <div>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Number</mat-label>
+              <input type="text"
+                     placeholder="Pick one"
+                     aria-label="Number"
+                     matInput
+                     [formControl]="myControl"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+          
+          
+    </div>
+</div>

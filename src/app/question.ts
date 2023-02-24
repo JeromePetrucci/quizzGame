@@ -33,7 +33,15 @@ export interface Answer{
 export interface Capital{
     id: number,
     country:string,
-    capital: string
+    capital: string,
+    region: string
+}
+
+export let EMPTY_CAPITAL: Capital = {
+    id : 0,
+    country : "null",
+    capital: "null",
+    region: "Europe"
 }
 
 export interface Stat{
