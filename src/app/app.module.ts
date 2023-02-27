@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatInputModule} from '@angular/material/input'; 
 
 import {
   MapsModule, LegendService, MarkerService, MapsTooltipService, DataLabelService, BubbleService,
@@ -27,6 +28,7 @@ import { QuestionComponent } from './question/question.component';
 import { StatComponent } from './stat/stat.component';
 import { CapitalComponent } from './capital/capital.component';
 import { MapComponent } from './map/map.component';
+import { FlagComponent } from './flag/flag.component';
 
 
 
@@ -38,6 +40,7 @@ import { MapComponent } from './map/map.component';
     StatComponent,
     CapitalComponent,
     MapComponent,
+    FlagComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { MapComponent } from './map/map.component';
       { path: 'stat', component: StatComponent },
       { path: 'capital', component: CapitalComponent },
       { path: 'map', component: MapComponent },
+      { path: 'flag', component: FlagComponent },
     ])
     ],
     HttpClientModule,
@@ -63,6 +67,7 @@ import { MapComponent } from './map/map.component';
     MatSlideToggleModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatInputModule,
     MapsModule,
   ],
   exports: [RouterModule],

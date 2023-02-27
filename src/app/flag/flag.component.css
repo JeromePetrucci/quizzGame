@@ -1,0 +1,13 @@
+.flag{
+    height: 100em;
+    width: 100%;
+    margin :0%;
+    padding: 0%;
+    text-align: left;
+    background-color: rgb(153, 217, 234);
+}
+
+img{
+    text-align: left;
+    cursor: pointer;
+}
