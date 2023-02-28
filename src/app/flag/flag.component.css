@@ -11,3 +11,54 @@ img{
     text-align: left;
     cursor: pointer;
 }
+
+.capital{
+    height: 100em;
+    width: 100%;
+    margin :0%;
+    padding: 0%;
+    text-align: left;
+    background-color: rgb(153, 217, 234);
+}
+
+.capital-question{
+    /* display: flex;
+    flex-direction: row; */
+    margin: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.capital-answers{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 10%;
+}
+
+.capital-answer{
+    height: auto;
+    width: auto;
+    min-height: 20px;
+    min-width: 100px;
+    padding: 15px;
+    margin: 5px;
+    background-color:rgb(101, 145, 227);
+    color: black;
+}
+
+.blue {
+    background-color: rgb(101, 145, 227);
+    color: black;
+}
+
+.green {
+    background-color: rgb(40, 198, 40);
+    color: black;
+}
+
+.red {
+    background-color: rgb(200, 31, 26);
+    color: black;
+}

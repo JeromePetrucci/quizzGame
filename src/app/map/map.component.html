@@ -73,22 +73,22 @@
                         </mat-autocomplete>
                     </mat-form-field>
                 </form>
-                <button class="capital-answer" mat-raised-button [disabled]="answered" (click)="onFormAnswer()"
+                <button *ngIf="!answered" class="capital-answer" mat-raised-button [disabled]="answered" (click)="onFormAnswer()"
                     [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect, 'green': answered && isCorrect}">
                     Try
                 </button>
                 <div>
-                    <p>{{buttonText}}</p>
                     <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextCountry()">
                         Next Question
                     </button>
+                    <p>{{buttonText}}</p>
                 </div>
             </div>
-            <div *ngIf="isHint">
-                <p>{{buttonText}}</p>
-                <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextCountry()">
+            <div *ngIf="isHint && answered">
+                <button class="capital-answer" mat-raised-button (click)="nextCountry()">
                     Next Question
                 </button>
+                <p >{{buttonText}}</p>
             </div>
         </div>
     </div>

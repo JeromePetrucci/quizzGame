@@ -34,14 +34,16 @@ export interface Capital{
     id: number,
     country:string,
     capital: string,
-    region: string
+    region: string,
+    code: string 
 }
 
 export let EMPTY_CAPITAL: Capital = {
     id : 0,
     country : "null",
     capital: "null",
-    region: "Europe"
+    region: "Europe",
+    code: "null"
 }
 
 export interface Stat{

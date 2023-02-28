@@ -10,7 +10,7 @@
 .capital-question{
     display: flex;
     flex-direction: row;
-    margin: 10px;
+    margin: 5px;
     text-align: center;
     justify-content: center;
 }
@@ -20,7 +20,7 @@
     gap: 10px;
     justify-content: center;
     max-width: 600px;
-    margin: 10%;
+    margin: 5px;
 }
 
 .capital-answer{
@@ -30,8 +30,13 @@
     min-width: 100px;
     padding: 15px;
     margin: 5px;
+    margin-top: 1px;
     background-color:rgb(101, 145, 227);
     color: black;
+}
+
+p {
+    margin-bottom: 5px;
 }
 
 .blue {
