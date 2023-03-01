@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { Maps, Zoom, Selection, MapsComponent } from '@syncfusion/ej2-angular-maps';
+import { Maps, Zoom, Selection } from '@syncfusion/ej2-angular-maps';
 import { Observable } from 'rxjs';
 import { world_map } from '../../assets/world-map';
 import { Capital, EMPTY_CAPITAL } from '../question';
@@ -15,7 +15,6 @@ Maps.Inject(Zoom, Selection);
 })
 export class MapComponent implements OnInit {
   constructor(private questionService: QuestionService,
-    public mapObj: MapsComponent
   ) { }
 
   getIndex(i: number): boolean {
@@ -83,6 +82,13 @@ export class MapComponent implements OnInit {
 
   }
 
+  nextSerie(){
+    this.isOver = false;
+    this.answerCounter = 0;
+    this.counter = 0;
+    this.nextCountry();
+  }
+
   //function on click button form --> valid entry and answer
   onFormAnswer() {
     console.log(this.formValue)
@@ -126,9 +132,8 @@ export class MapComponent implements OnInit {
       this.counter = 0
       this.answerCounter = 0
     }
-    //this.nextQuestion()
-    
 
+    if (this.answerCounter === this.questionNB || this.answerCounter === 197) {this.isOver = true}
   }
 
   //Initialisation Question
@@ -147,12 +152,14 @@ export class MapComponent implements OnInit {
 
   answered: boolean = false;
   isCorrect: boolean = true;
+  isOver: boolean = false;
   isHint: boolean = false;
   formValue: string = "";
   buttonText: string = ""
 
   counter: number = 0;
   answerCounter: number = 0;
+  questionNB: number | null = this.questionService.questionNB;
   lastCapitals: Capital[] = [];
 
   //form variable

@@ -59,7 +59,7 @@ export class CapitalComponent {
       this.counter = 0
       this.answerCounter = 0
     }
-    //this.nextQuestion()
+    if (this.answerCounter === this.questionNB || this.answerCounter === 197) {this.isOver = true}
   }
 
   nextQuestion() {
@@ -74,6 +74,13 @@ export class CapitalComponent {
     this.index1 = this.getIndex(1);
     this.index2 = this.getIndex(2);
     this.index3 = this.getIndex(3);
+  }
+
+  nextSerie(){
+    this.isOver = false;
+    this.answerCounter = 0;
+    this.counter = 0;
+    this.nextQuestion();
   }
 
   constructor(private questionService: QuestionService) { }
@@ -95,7 +102,9 @@ export class CapitalComponent {
 
   answered: boolean = false;
   isCorrect: boolean = true;
+  isOver: boolean = false;
 
+  questionNB = this.questionService.questionNB;
   counter: number = 0;
   answerCounter: number = 0;
   lastCapitals: Capital[] = []

@@ -8,8 +8,8 @@
                 Find the {{(isFlag) ? "Flag" : "Country"}}
             </mat-slide-toggle>
 
-            <div class="capital-question">Find {{counter}} / 197 </div>
-            <div class="capital-question">Answered : {{answerCounter}} </div>
+            <div class="capital-question">Question : {{answerCounter}} / {{questionNB}} </div>
+            <div class="capital-question">Find {{counter}} flags</div>
             <div class="flag-question">
                 <img *ngIf="!isFlag" class="flag-img" src={{correctURL}} alt="a country flag (maybe Kosovo)">
                 <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg" > -->
@@ -17,7 +17,7 @@
 
             </div>
             <div *ngIf="!isFlag" class="capital-question">Guess the country of this flag ?</div>
-            <div *ngIf="isFlag" class="capital-question">{{correctReponse.country}} has wich flag ?
+            <div *ngIf="isFlag" class="capital-question">Which is the flag of {{correctReponse.country}} ?
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                 <img class="flag-img" src={{correctURL}} alt="a country flag (maybe Kosovo)">
             </button>
             <button class="capital-answer" disabled="{{answered}}" mat-raised-button
-                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" (click)="onAnswer(false)">   
+                [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" (click)="onAnswer(false)">
                 <img class="flag-img" src={{createURL(otherResponse[0].code)}} alt="a country flag (maybe Kosovo)">
             </button>
             <button *ngIf="index1" disabled="{{answered}}" class="capital-answer" mat-raised-button
@@ -85,9 +85,17 @@
         </div>
 
 
-        <div>
-            <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextQuestion()">
+        <div *ngIf="answered && !isOver">
+            <button class="capital-answer" mat-raised-button (click)="nextQuestion()">
                 Next Question
+            </button>
+        </div>
+        <div *ngIf="isOver">
+            <button class="capital-answer" mat-raised-button routerLink="">
+                Menu Return
+            </button>
+            <button class="capital-answer" mat-raised-button (click)="nextSerie()">
+                New Questions
             </button>
         </div>
     </div>

@@ -15,7 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatFormFieldModule} from '@angular/material/form-field'; 
-import {MatInputModule} from '@angular/material/input'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider'; 
 
 import {
   MapsModule, LegendService, MarkerService, MapsTooltipService, DataLabelService, BubbleService,
@@ -68,6 +69,7 @@ import { FlagComponent } from './flag/flag.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDividerModule,
     MapsModule,
   ],
   exports: [RouterModule],

@@ -14,10 +14,8 @@
         </ejs-maps>
         <div class="capital-question">
             <div>
-
-
-                <div class="capital-question">Find {{counter}} / 197 countries</div>
-                <!-- <div class="capital-question">Answered : {{answerCounter}} </div> -->
+                <div class="capital-question">Question : {{answerCounter}} / {{questionNB}} </div>
+                <div class="capital-question">Find {{counter}} countries</div>
                 <div class="capital-question">What is this country ?</div>
                 <mat-slide-toggle [(ngModel)]="isHint" color="primary" disabled="{{answered}}">
                     {{(isHint) ? "Hint" : "Hint ?"}}
@@ -73,22 +71,38 @@
                         </mat-autocomplete>
                     </mat-form-field>
                 </form>
-                <button *ngIf="!answered" class="capital-answer" mat-raised-button [disabled]="answered" (click)="onFormAnswer()"
+                <button *ngIf="!answered" class="capital-answer" mat-raised-button [disabled]="answered"
+                    (click)="onFormAnswer()"
                     [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect, 'green': answered && isCorrect}">
                     Try
                 </button>
                 <div>
-                    <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextCountry()">
+                    <p>{{buttonText}}</p>
+                    <button *ngIf="answered && !isOver" class="capital-answer" mat-raised-button
+                        (click)="nextCountry()">
                         Next Question
                     </button>
-                    <p>{{buttonText}}</p>
+                    <button *ngIf="isOver" class="capital-answer" mat-raised-button routerLink="">
+                        Menu Return
+                    </button>
+                    <button *ngIf="isOver" class="capital-answer" mat-raised-button (click)="nextSerie()">
+                        New Questions
+                    </button>
                 </div>
             </div>
-            <div *ngIf="isHint && answered">
+            <div *ngIf="isHint && answered && !isOver">
                 <button class="capital-answer" mat-raised-button (click)="nextCountry()">
                     Next Question
                 </button>
-                <p >{{buttonText}}</p>
+                <p>{{buttonText}}</p>
+            </div>
+            <div *ngIf="isOver && isHint">
+                <button class="capital-answer" mat-raised-button routerLink="">
+                    Menu Return
+                </button>
+                <button class="capital-answer" mat-raised-button (click)="nextSerie()">
+                    New Questions
+                </button>
             </div>
         </div>
     </div>

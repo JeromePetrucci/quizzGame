@@ -64,7 +64,8 @@ export class FlagComponent {
       this.counter = 0
       this.answerCounter = 0
     }
-    //this.nextQuestion()
+
+    if (this.answerCounter === this.questionNB || this.answerCounter === 197) {this.isOver = true}
   }
 
   nextQuestion() {
@@ -80,6 +81,13 @@ export class FlagComponent {
     this.index1 = this.getIndex(1);
     this.index2 = this.getIndex(2);
     this.index3 = this.getIndex(3);
+  }
+
+  nextSerie(){
+    this.isOver = false;
+    this.answerCounter = 0;
+    this.counter = 0;
+    this.nextQuestion();
   }
 
   constructor(private questionService: QuestionService) { }
@@ -98,11 +106,15 @@ export class FlagComponent {
   index3 = this.getIndex(3);
 
   //Variables
+  answerType: "capital" | "country" | "flag" = "capital";
+  questionType: "capital" | "country" | "flag" = "country";
   isFlag: boolean = true;
 
   answered: boolean = false;
   isCorrect: boolean = true;
+  isOver: boolean = false;
 
+  questionNB = this.questionService.questionNB;
   counter: number = 0;
   answerCounter: number = 0;
   lastCapitals: Capital[] = []

@@ -28,6 +28,11 @@ AllChecked :boolean = true;
 difficulties : string[] = ["easy","medium","hard","All"]
 selectedDifficulty: string = "All"
 
+questionNBchoice: (number| null)[] = [10,20,50,100, null]
+questionNB: number| null = 10
+mapNB: number| null = 10
+ccfNB: number| null= 10
+
 onChage(cat : Category){
   if (cat.completed) {this.AllChecked = false}
   else {
@@ -49,6 +54,14 @@ setCategories() {
   this.categories.forEach( c => {if (c.completed) { categoryList.push(c)}})
   this.questionService.setCategories(categoryList)
   this.questionService.difficulty = this.selectedDifficulty;
+  this.questionService.questionNB = this.questionNB;
+}
+
+setNBmap(){
+  if (this.mapNB !== null){
+    this.questionService.questionNB = this.mapNB;
+  }
+  else {this.questionService.questionNB = 197;}
 }
 
 

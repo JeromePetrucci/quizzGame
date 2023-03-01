@@ -7,10 +7,10 @@
                 Find the {{(isCapital) ? "Capital" : "Country"}}
             </mat-slide-toggle>
 
-            <div class="capital-question">Find {{counter}} / 197 capitals</div>
-            <div class="capital-question">Answered : {{answerCounter}} </div>
+            <div class="capital-question">Question : {{answerCounter}} / {{questionNB}} </div>      
+            <div class="capital-question">Find {{counter}} capitals</div>
             <div *ngIf="isCapital" class="capital-question">What is the capital of {{correctReponse.country}} ?</div>
-            <div *ngIf="!isCapital" class="capital-question">{{correctReponse.capital}} is the capital of wich country ?
+            <div *ngIf="!isCapital" class="capital-question">{{correctReponse.capital}} is the capital city of which country ?
             </div>
         </div>
 
@@ -44,9 +44,17 @@
                 {{(isCapital) ? correctReponse.capital : correctReponse.country}}
             </button>
         </div>
-        <div>
-            <button *ngIf="answered" class="capital-answer" mat-raised-button (click)="nextQuestion()">
+        <div *ngIf="answered && !isOver" >
+            <button class="capital-answer" mat-raised-button (click)="nextQuestion()">
                 Next Question
+            </button>
+        </div>
+        <div *ngIf="isOver">
+            <button class="capital-answer" mat-raised-button routerLink="">
+                Menu Return
+            </button>
+            <button class="capital-answer" mat-raised-button (click)="nextSerie()">
+                New Questions
             </button>
         </div>
     </div>

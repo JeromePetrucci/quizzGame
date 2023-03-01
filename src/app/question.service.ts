@@ -11,6 +11,7 @@ export class QuestionService {
   categories: Category[] = [];
   allCategories : boolean = false;
   difficulty : string = "all";
+  questionNB : number | null = 10;
   listAnswer : Answer[] = [];
   quetionAsked : number = 0;
   constructor(private http: HttpClient) {}

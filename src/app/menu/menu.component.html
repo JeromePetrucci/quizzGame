@@ -1,37 +1,80 @@
 <div class="menu">
-    <div class="menu-title">Wellcome to quizzGame</div>
-    <button mat-raised-button color="warn" routerLink="/question" (click)="setCategories()">New Question</button>
-    <div>
-      <button mat-raised-button color="warn" routerLink="/capital" >Capital Questions</button>
-    </div>
-    <div>
-      <button mat-raised-button color="warn" routerLink="/map" >Map Questions</button>
-    </div>
-    <div>
-      <button mat-raised-button color="warn" routerLink="/flag" >Flag Questions</button>
-    </div>
-    <div class="stat">
-      <button mat-raised-button color="warn" routerLink="/stat">Statistic</button>
-    </div>
-    <div class="menu-category">
-      <div>
-        <div class="menu-category-title">Categories</div>
-        <mat-checkbox [checked]="AllChecked" (change)="setAll($event.checked)"> 
-          All
-        </mat-checkbox>
-        <div *ngFor="let categorie of categories" class="menu-categories">
-          <mat-checkbox  (change)="onChage(categorie)" [checked]="categorie.completed">
-            {{categorie.name}}
-          </mat-checkbox >
+
+  <div class="menu-title">Wellcome to quizzGame</div>
+
+  <div class="menu-countainer">
+
+    <div class="menu-trivia">
+      <div class="trivia-title">Trivia quiz</div>
+
+      <div class="trivia-choises">
+
+        <div class="trivia-choise">
+          <div class="menu-category-title">Categories</div>
+          <mat-checkbox [checked]="AllChecked" (change)="setAll($event.checked)">
+            All
+          </mat-checkbox>
+          <div *ngFor="let categorie of categories" class="menu-categories">
+            <mat-checkbox (change)="onChage(categorie)" [checked]="categorie.completed">
+              {{categorie.name}}
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div class="trivia-choise">
+          <div class="menu-category-title">Difficulties</div>
+          <mat-radio-group class="menu-categories" [(ngModel)]="selectedDifficulty">
+            <div *ngFor="let difficulty of difficulties">
+              <mat-radio-button [value]="difficulty">{{difficulty}} </mat-radio-button>
+            </div>
+          </mat-radio-group>
+        </div>
+
+        <div class="trivia-choise">
+          <div class="menu-category-title">Number of questions</div>
+          <mat-radio-group class="menu-categories" [(ngModel)]="questionNB">
+            <div *ngFor="let nb of questionNBchoice">
+              <mat-radio-button [value]="nb">{{(nb) ? nb : "More"}} </mat-radio-button>
+            </div>
+          </mat-radio-group>
         </div>
       </div>
-      <div>
-        <div class="menu-category-title">Difficulties</div>
-        <mat-radio-group class="menu-categories" [(ngModel)]="selectedDifficulty">
-          <div *ngFor = "let difficulty of difficulties" >
-            <mat-radio-button [value]="difficulty">{{difficulty}} </mat-radio-button>
-          </div>
-        </mat-radio-group> 
+
+      <div class="trivia-button">
+        <button mat-raised-button color="warn" routerLink="/question" (click)="setCategories()">New Question</button>
+        <button class="stat" mat-raised-button color="warn" routerLink="/stat">Statistic</button>
       </div>
-    </div> 
+
+    </div>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+
+    <div class="menu-geo">
+      <div class="trivia-title">Geo quiz</div>
+
+      <div class="geo-map">
+        <div>
+        <div class="menu-category-title">Number of questions</div>
+        <mat-radio-group class="geo-choice" [(ngModel)]="mapNB">
+          <div *ngFor="let nb of questionNBchoice">
+            <mat-radio-button [value]="nb">{{(nb) ? nb : "All (197)"}} </mat-radio-button>
+          </div>
+        </mat-radio-group>
+      </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="geo-button">
+        <button mat-raised-button color="warn" (click)="setNBmap()" routerLink="/map">Map Questions</button>
+        <button mat-raised-button color="warn" (click)="setNBmap()" routerLink="/capital">Capital Questions</button>
+        <button mat-raised-button color="warn" (click)="setNBmap()" routerLink="/flag">Flag Questions</button>
+      </div>
+
+
+    </div>
+
+  </div>
+
 </div>

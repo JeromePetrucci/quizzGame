@@ -23,7 +23,7 @@ export class QuestionComponent {
   percentage: number = this.getPercentage();
   actualRow: { counter: number, type: "win" | "lose" } = { counter: 0, type: "win" }
 
-  //answers' index
+  //answers'index
   randomI: number = this.getRandomInt();
   index0: boolean = this.getIndex(0);
   index1: boolean = this.getIndex(1);
@@ -34,11 +34,13 @@ export class QuestionComponent {
   result: string = ""; //"loading ...";
   answered: boolean = false;
   isCorrect: boolean = false;
+  isOver: boolean = false;
 
   //information of menu selection
   categoryAll: boolean = this.questionService.allCategories || this.questionService.categories.length < 1;
   categories: Category[] = this.questionService.categories;
   difficultySelected: string = this.questionService.difficulty;
+  questionNB: number | null = this.questionService.questionNB;
 
   onAnswer(correct: boolean, question: Question) {
     this.answered = true;
@@ -65,20 +67,31 @@ export class QuestionComponent {
 
     this.percentage = this.getPercentage();
     this.sendQuestion(question, correct);
+
+    if (this.questionCounter === this.questionNB ) {this.isOver = true}
   }
 
   //relaod a new question
   nextQuestion(): void {
-    this.answered = false;
-    this.result = "loading ...";
+      this.isOver = false
+      this.answered = false;
+      this.result = "loading ...";
 
-    this.question = this.questionService.getQuestion();
-    this.randomI = this.getRandomInt();
-    this.index0 = this.getIndex(0);
-    this.index1 = this.getIndex(1);
-    this.index2 = this.getIndex(2);
-    this.index3 = this.getIndex(3);
-    console.log(this.randomI)
+      this.question = this.questionService.getQuestion();
+      this.randomI = this.getRandomInt();
+      this.index0 = this.getIndex(0);
+      this.index1 = this.getIndex(1);
+      this.index2 = this.getIndex(2);
+      this.index3 = this.getIndex(3);
+      console.log(this.randomI)
+  }
+
+  nextSerie(): void{
+    this.isOver = false;
+    this.counterGoodAnswer = 0;
+    this.questionCounter = 0;
+    this.percentage = 0;
+    this.nextQuestion()
   }
 
   //functiun that return true if the parameter is the index of the good answer
