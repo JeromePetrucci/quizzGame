@@ -66,6 +66,8 @@ export class FlagComponent {
     }
 
     if (this.answerCounter === this.questionNB || this.answerCounter === 197) {this.isOver = true}
+
+    //this.nextQuestion();
   }
 
   nextQuestion() {

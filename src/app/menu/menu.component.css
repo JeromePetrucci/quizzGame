@@ -23,7 +23,9 @@
 .trivia-title{
     text-align: center;
     font-size: large;
-
+}
+.trivia-all{
+    margin-left: 30px;
 }
 .trivia-choises{
    display: flex;

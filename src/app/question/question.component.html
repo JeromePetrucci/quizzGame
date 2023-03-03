@@ -19,7 +19,7 @@
             <div class="question-counter">Actual streak : {{actualRow.counter}} {{actualRow.type}}(s)</div>
         </div>
         <!-- Question -->
-        <div class="question-part" *ngFor="let quest of question | async">
+        <div class="question-part" *ngFor="let quest of question "><!-- | async -->
             <div class="question-question">Category : {{quest.category}}</div>
             <div class="question-question">Difficulty : {{quest.difficulty}}</div>
             <div class="question-question">{{quest.question}}</div>
@@ -67,7 +67,9 @@
                     New Questions
                 </button>
             </div>
+            <div>{{loading}}</div>  
         </div>
+            
     </div>
 
 </div>

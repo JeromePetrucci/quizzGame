@@ -1,0 +1,38 @@
+.map-button{
+    margin-top: 5%;
+}
+
+.map-countainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.capital-question{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+.example-full-width {
+width: 100%;
+}
+
+.capital-answer{
+    height: auto;
+    width: auto;
+    min-height: 20px;
+    min-width: 100px;
+    padding: 15px;
+    margin: 5px;
+    background-color:rgb(101, 145, 227);
+    color: black;
+}

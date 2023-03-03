@@ -11,7 +11,7 @@
 
         <div class="trivia-choise">
           <div class="menu-category-title">Categories</div>
-          <mat-checkbox [checked]="AllChecked" (change)="setAll($event.checked)">
+          <mat-checkbox class="trivia-all" [checked]="AllChecked" (change)="setAll($event.checked)">
             All
           </mat-checkbox>
           <div *ngFor="let categorie of categories" class="menu-categories">
@@ -64,13 +64,15 @@
       </div>
       </div>
 
-      <mat-divider></mat-divider>
-
       <div class="geo-button">
         <button mat-raised-button color="warn" (click)="setNBmap()" routerLink="/map">Map Questions</button>
         <button mat-raised-button color="warn" (click)="setNBmap()" routerLink="/capital">Capital Questions</button>
         <button mat-raised-button color="warn" (click)="setNBmap()" routerLink="/flag">Flag Questions</button>
       </div>
+
+      <mat-divider></mat-divider>
+
+      <button mat-raised-button color="warn" routerLink="/find">Find all the countries with the map</button>
 
 
     </div>

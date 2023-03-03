@@ -166,7 +166,6 @@ export class MapComponent implements OnInit {
   filteredOptions: Observable<Capital[]> = this.questionService.getCapitals();
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
-  newList = this.questionService.getCapitals();
 
   private _filter(value: string): Capital[] {
     const filterValue = value.toLowerCase();
@@ -207,7 +206,6 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //let newList = this.questionService.getCapitals();
     this.questionService.getCapitals().subscribe(value => {
       this.listCapitals = value;
       this.listName = value.map(c => { return c.country })
