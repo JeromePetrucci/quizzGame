@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Category, Question } from './question';
+import { Answer, Capital, Category, Question } from './question';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +10,11 @@ import { Category, Question } from './question';
 export class QuestionService {
   categories: Category[] = [];
   allCategories : boolean = false;
-  difficulty : string = "all"
+  difficulty : string = "all";
+  questionNB : number | null = 10;
+  listAnswer : Answer[] = [];
+  quetionAsked : number = 0;
   constructor(private http: HttpClient) {}
-  //request: string = 'https://the-trivia-api.com/api/questions?limit=1';
 
   setCategories (listCategory : Category[] ) : void {
     this.categories = listCategory;
@@ -30,5 +33,43 @@ export class QuestionService {
       newRequest = newRequest + "&difficulty=" + this.difficulty;
     }
     return this.http.get<Question[]>(newRequest);
+    
+  }
+  
+  addQuestion(newQuestion: Question) {
+    let url: string = 'http://localhost:8081/addQuestion';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'});
+  let options = { headers: headers };
+    let add: Observable<void> = this.http.post<void>(url, newQuestion, options);
+    add.subscribe(x => {console.log("question send")})
+  }
+
+  addAnswer(newAnswer: Answer): number {
+    let url: string = 'http://localhost:8081/addAnswer';
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'});
+    let options = { headers: headers };
+    let add: Observable<number> = this.http.post<number>(url, newAnswer, options);
+    
+    add.subscribe(x => {console.log("answer send");
+    this.quetionAsked = x;
+  })
+  return this.quetionAsked
+   
+  }
+
+  getStat() :Observable<Answer[]> {
+    let url: string = 'http://localhost:8081/getStat';
+    return this.http.get<Answer[]>(url);
+   
+  }
+
+  getCapitals() :Observable<Capital[]> {
+    let url: string = 'http://localhost:8081/getCapitals';
+    return this.http.get<Capital[]>(url);
+   
   }
 }

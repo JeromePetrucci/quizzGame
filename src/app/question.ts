@@ -1,5 +1,5 @@
 export interface Question{
-    category: string,	//"Society & Culture"
+    category: string,
 id: string,	//"622a1c367cc59eab6f95011b"
 correctAnswer: string,	//"Holy Grail"
 incorrectAnswers :string[]	,
@@ -13,12 +13,46 @@ tags : string[],
 type: string, //"Multiple Choice"
 difficulty: string,//"easy"
 regions: string[],//	[]
+isNiche: boolean,//false
 }
 
 export interface Category{
     name:string,
     completed: boolean,
     requestName: string,
+}
+
+export interface Answer{
+    category:string,
+    difficulty: string,
+    answer: boolean,
+    id: string,
+    asked: number,
+}
+
+export interface Capital{
+    id: number,
+    country:string,
+    capital: string,
+    region: string,
+    code: string 
+}
+
+export let EMPTY_CAPITAL: Capital = {
+    id : 0,
+    country : "null",
+    capital: "null",
+    region: "Europe",
+    code: "null"
+}
+
+export interface Stat{
+    category:string,
+    difficulty: string,
+    questions: number,
+    good_answers: number,
+    percentage: number,
+    allStat: Stat[],
 }
 
 export let EMPTY_QUESTION: Question = {
@@ -31,5 +65,6 @@ export let EMPTY_QUESTION: Question = {
     type: "", 
     difficulty: "",
     regions: [],
+    isNiche:false,
 }
 
