@@ -25,7 +25,7 @@
     font-size: large;
 }
 .trivia-all{
-    margin-left: 30px;
+    margin-left: 5%;
 }
 .trivia-choises{
    display: flex;
@@ -50,7 +50,7 @@
 }
 .geo-map{
     display: flex;
-    gap: 50px;
+    gap: 10%;
 }
 .geo-button{
     display: flex;

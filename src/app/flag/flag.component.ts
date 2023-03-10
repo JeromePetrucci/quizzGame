@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { FlagService } from '../flag.service'
 import { Capital, EMPTY_CAPITAL } from '../question';
 import { QuestionService } from '../question.service';
 
