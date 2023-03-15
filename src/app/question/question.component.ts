@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { Answer, Category, EMPTY_QUESTION, Question } from '../question';
 import { QuestionService } from '../question.service'

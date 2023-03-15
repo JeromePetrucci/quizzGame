@@ -1,5 +1,5 @@
 <div class="flag">
-    <img src="../../assets/logo_qG.png" routerLink="">
+    <img src="../../assets/logo_qG.png" alt="logo quizzGame" routerLink="">
 
 
     <div class="capital-question">
@@ -12,8 +12,6 @@
             <div class="capital-question">Find {{counter}} flags</div>
             <div class="flag-question">
                 <img *ngIf="!isFlag" class="flag-img" src={{correctURL}} alt="a country flag (maybe Kosovo)">
-                <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg" > -->
-                <!-- <img src="https://countryflagsapi.com/png/DE" > -->
 
             </div>
             <div *ngIf="!isFlag" class="capital-question">Guess the country of this flag ?</div>
