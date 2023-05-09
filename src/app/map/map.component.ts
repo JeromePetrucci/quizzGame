@@ -82,6 +82,7 @@ export class MapComponent implements OnInit {
 
   }
 
+  //function to make a new serie
   nextSerie(){
     this.isOver = false;
     this.answerCounter = 0;
@@ -206,6 +207,7 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //Get all the countries 
     this.questionService.getCapitals().subscribe(value => {
       this.listCapitals = value;
       this.listName = value.map(c => { return c.country })

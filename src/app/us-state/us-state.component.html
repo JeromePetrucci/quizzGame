@@ -8,13 +8,12 @@
             <e-layers>
                 <e-layer [shapeData]='shapeData' [shapePropertyPath]='shapePropertyPath' [shapeDataPath]='shapeDataPath'
                     [dataSource]='dataSource' [shapeSettings]='shapeSettings' >
+
                 </e-layer>
             </e-layers>
-            
         </ejs-maps>
-        <!-- <button  id='select' (click)='select()'>select</button> -->
         <div class="capital-question">
-            <div>Find all the countries : {{counter}} / 197</div>
+            <div>Find all the states : {{counter}} /50</div>
             <div>
                 <form>
                     <mat-form-field appearance="fill">
@@ -24,7 +23,7 @@
                     </mat-form-field>
                 </form>
             </div>
-            <div *ngIf="isOver">Congrats! You find all the countries !!</div>
+            <div *ngIf="isOver">Congrats! You find all the states !!</div>
             <div *ngIf="isOver">
                 <button class="capital-answer" mat-raised-button routerLink="">
                     Menu Return

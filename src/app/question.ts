@@ -68,3 +68,15 @@ export let EMPTY_QUESTION: Question = {
     isNiche:false,
 }
 
+export interface Departement{
+    number: string,
+    name:string,
+    prefecture: string,
+    region: number
+}
+
+export interface State{
+    code: string,
+    state:string,
+    capital: string
+}

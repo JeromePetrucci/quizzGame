@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
-import { Maps, Zoom, Selection, MapsComponent } from '@syncfusion/ej2-angular-maps';
-import { world_map } from '../../assets/world-map';
-import { Capital } from '../question';
+import { Maps, Zoom, Selection } from '@syncfusion/ej2-angular-maps';
+import { france_map } from '../../assets/france-map';
+import { Departement } from '../question';
 import { QuestionService } from '../question.service';
 Maps.Inject(Zoom, Selection);
 
 @Component({
-  selector: 'app-find',
-  templateUrl: './find.component.html',
-  styleUrls: ['./find.component.css']
+  selector: 'app-france',
+  templateUrl: './france.component.html',
+  styleUrls: ['./france.component.css']
 })
-export class FindComponent {
-  constructor(private questionService: QuestionService,public mapObj: MapsComponent ) {
-    
-   }
+export class FranceComponent {
+  constructor(private questionService: QuestionService) { }
 
   handleInput() {
 
@@ -26,7 +24,7 @@ export class FindComponent {
       //console.log(this.listName)
       this.formValue = "";
     }
-    if (this.counter === 197){
+    if (this.counter === 96){
       this.isOver = true;
     }
 
@@ -35,12 +33,12 @@ export class FindComponent {
   onReset(){
     this.isOver = false;
     this.counter = 0;
-    this.listName = this.listCapitals.map(c => { return c.country.toLowerCase() })
+    this.listName = this.listCapitals.map(c => { return c.name.toLowerCase() })
     this.dataSource = [];
   }
 
   //Initialisation varibles
-  listCapitals: Capital[] = [];
+  listCapitals: Departement[] = [];
   listName: string[] = [];
 
   formValue: string = "";
@@ -55,9 +53,9 @@ export class FindComponent {
     //doubleClickZoom:true
   };
 
-
+ 
   //Initialisation map data
-  public shapeData: object = world_map;
+  public shapeData: object = france_map;
   public dataSource: object[] = [];
   public shapePropertyPath: string = "name";
   public shapeDataPath: string = "Country";
@@ -69,31 +67,15 @@ export class FindComponent {
       { value: 'Neutral', color: '#316DB5' },
     ]
   };
-  //Selection settings
-  public selectionSettings: object = {
-    enable: true,
-    fill: 'blue',
-    border: { color: 'white', width: 2}
-};
-public initialShapeSelection = [
-  { shapePath: 'continent', shapeValue: 'Africa' },
-  { shapePath: 'name', shapeValue: 'India' }
-];
-
-
-select(){
-  console.log (this.mapObj.shapeSelectionItem)
-  //this.mapObj.shapeSelection(0, 'name', 'France', true);
-};
 
 
   ngOnInit(): void {
-    this.questionService.getCapitals().subscribe(value => {
+    this.questionService.getDepartement().subscribe(value => {
       this.listCapitals = value;
-      this.listName = value.map(c => { return c.country.toLowerCase() })
+      this.listName = value.map(c => { return c.name.toLowerCase() })
     });
     this.dataSource = [
-      { "Country": "france", "population": "Neutral" },
+      //{ "Country": "Rhône", "population": "Neutral" },
     ];
   }
 
