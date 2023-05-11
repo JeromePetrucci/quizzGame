@@ -24,7 +24,7 @@ export class FranceComponent {
       //console.log(this.listName)
       this.formValue = "";
     }
-    if (this.counter === 96){
+    if (this.counter === 101){
       this.isOver = true;
     }
 

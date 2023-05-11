@@ -93,7 +93,7 @@ select(){
       this.listName = value.map(c => { return c.country.toLowerCase() })
     });
     this.dataSource = [
-      { "Country": "france", "population": "Neutral" },
+      // { "Country": "france", "population": "Neutral" },
     ];
   }
 

@@ -25,7 +25,7 @@ export class UsStateComponent {
       //console.log(this.listName)
       this.formValue = "";
     }
-    if (this.counter === 96){
+    if (this.counter === 50){
       this.isOver = true;
     }
 
