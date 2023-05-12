@@ -16,12 +16,16 @@ export class UsStateComponent {
 
   handleInput() {
 
-    if (this.listName.includes(this.formValue.toLocaleLowerCase())) {
-      console.log(this.formValue)
-      this.dataSource = this.dataSource.concat([{ "Country": this.formValue, "population": "Neutral" }])
+    let value : string = this.toNeutralString(this.formValue)
+
+   
+
+    if (this.listName.includes(value)) {
+      console.log(value)
+      this.dataSource = this.dataSource.concat([{ "Country": value, "population": "Neutral" }])
       this.counter++;
 
-      this.listName = this.listName.filter(name => (name != this.formValue))
+      this.listName = this.listName.filter(name => (name != value))
       //console.log(this.listName)
       this.formValue = "";
     }
@@ -34,14 +38,17 @@ export class UsStateComponent {
   onReset(){
     this.isOver = false;
     this.counter = 0;
-    this.listName = this.listCapitals.map(c => { return c.state.toLowerCase() })
+    this.listName = this.listCapitals.map(c => { return this.toNeutralString(c.state) })
     this.dataSource = [];
+  }
+
+  toNeutralString (name:string){
+    return name.toLowerCase().replaceAll(' ', '')
   }
 
   //Initialisation varibles
   listCapitals: State[] = [];
   listName: string[] = [];
-
   formValue: string = "";
   counter: number = 0;
   isOver: boolean = false;
@@ -74,7 +81,7 @@ export class UsStateComponent {
   ngOnInit(): void {
     this.questionService.getState().subscribe(value => {
       this.listCapitals = value;
-      this.listName = value.map(s => { return s.state.toLowerCase() })
+      this.listName = value.map(s => { return this.toNeutralString(s.state) })
     });
     this.dataSource = [
       //{ "Country": "Rhône", "population": "Neutral" },

@@ -80,3 +80,8 @@ export interface State{
     state:string,
     capital: string
 }
+
+export interface OtherName {
+    name : string,
+    country : string
+}

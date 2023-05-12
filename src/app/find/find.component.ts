@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Maps, Zoom, Selection, MapsComponent } from '@syncfusion/ej2-angular-maps';
 import { world_map } from '../../assets/world-map';
-import { Capital } from '../question';
+import { Capital, OtherName } from '../question';
 import { QuestionService } from '../question.service';
 Maps.Inject(Zoom, Selection);
 
@@ -17,31 +17,54 @@ export class FindComponent {
 
   handleInput() {
 
-    if (this.listName.includes(this.formValue.toLocaleLowerCase())) {
-      console.log(this.formValue)
-      this.dataSource = this.dataSource.concat([{ "Country": this.formValue, "population": "Neutral" }])
+    let value : string = this.toNeutralString(this.formValue)
+
+    for (let other of this.listOtherName)  {
+      if (value === other.name) {
+        value = other.country
+        break
+      }
+    }
+
+    if (this.listName.includes(value)) {
+      console.log(value)
+      this.dataSource = this.dataSource.concat([{ "Country": value, "population": "Neutral" }])
       this.counter++;
 
-      this.listName = this.listName.filter(name => (name != this.formValue))
+      this.listName = this.listName.filter(name => (name != value))
       //console.log(this.listName)
       this.formValue = "";
     }
     if (this.counter === 197){
       this.isOver = true;
     }
-
   }
 
   onReset(){
     this.isOver = false;
     this.counter = 0;
-    this.listName = this.listCapitals.map(c => { return c.country.toLowerCase() })
+    this.listName = this.listCapitals.map(c => { return this.toNeutralString(c.country) })
     this.dataSource = [];
+    this.formValue = "";
+  }
+
+  //Accept more input
+  toNeutralString (name:string){
+    return name.toLowerCase().replaceAll('ô',"o").replaceAll(' ', '').replaceAll('-', '').replaceAll("'", '')
   }
 
   //Initialisation varibles
   listCapitals: Capital[] = [];
   listName: string[] = [];
+  listOtherName: OtherName[] = [{name:"usa",country:'unitedstatesofamerica'},
+  {name:"congo",country:'republicofcongo'},
+  {name:"uk",country:'unitedkingdom'},
+  {name:"uae",country:'unitedarabemirates'},
+  {name:"salvador",country:'elsalvador'}
+  // {name:"congo",country:'democraticrepublicofcongo'}
+
+]
+
 
   formValue: string = "";
   counter: number = 0;
@@ -90,7 +113,7 @@ select(){
   ngOnInit(): void {
     this.questionService.getCapitals().subscribe(value => {
       this.listCapitals = value;
-      this.listName = value.map(c => { return c.country.toLowerCase() })
+      this.listName = value.map(c => { return this.toNeutralString(c.country)})
     });
     this.dataSource = [
       // { "Country": "france", "population": "Neutral" },

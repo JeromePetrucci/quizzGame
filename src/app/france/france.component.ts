@@ -10,17 +10,27 @@ Maps.Inject(Zoom, Selection);
   templateUrl: './france.component.html',
   styleUrls: ['./france.component.css']
 })
+
+
+
 export class FranceComponent {
   constructor(private questionService: QuestionService) { }
 
   handleInput() {
+    if (this.formValue[0] === " "){
+      this.formValue=this.formValue.replace(' ',"")
+    }
+    
+    let value : string = this.toNeutralString(this.formValue)
+    
 
-    if (this.listName.includes(this.formValue.toLocaleLowerCase())) {
-      console.log(this.formValue)
-      this.dataSource = this.dataSource.concat([{ "Country": this.formValue, "population": "Neutral" }])
+    //if text is include in data base
+    if (this.listName.includes(value.toLocaleLowerCase())) {
+      console.log(value)
+      this.dataSource = this.dataSource.concat([{ "Country": value, "population": "Neutral" }])
       this.counter++;
 
-      this.listName = this.listName.filter(name => (name != this.formValue))
+      this.listName = this.listName.filter(name => (name != value))
       //console.log(this.listName)
       this.formValue = "";
     }
@@ -32,9 +42,16 @@ export class FranceComponent {
 
   onReset(){
     this.isOver = false;
+    this.formValue=""
     this.counter = 0;
-    this.listName = this.listCapitals.map(c => { return c.name.toLowerCase() })
+    this.listName = this.listCapitals.map(c => { return this.toNeutralString(c.name) })
     this.dataSource = [];
+    
+  }
+
+  //Accept more input
+  toNeutralString (name:string){
+    return name.toLowerCase().replaceAll('ô',"o").replaceAll('è',"e").replaceAll('é',"e").replaceAll(' ', '').replaceAll('-', '').replaceAll("'", '')
   }
 
   //Initialisation varibles
@@ -72,7 +89,8 @@ export class FranceComponent {
   ngOnInit(): void {
     this.questionService.getDepartement().subscribe(value => {
       this.listCapitals = value;
-      this.listName = value.map(c => { return c.name.toLowerCase() })
+      this.listName = value.map(c => { return this.toNeutralString(c.name)})
+      
     });
     this.dataSource = [
       //{ "Country": "Rhône", "population": "Neutral" },
