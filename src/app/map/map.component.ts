@@ -72,7 +72,8 @@ export class MapComponent implements OnInit {
     this.index3 = this.getIndex(3);
 
     if (this.counter < 197) {
-      this.dataSource = [{ "Country": this.lastCapitals[this.index].country, "population": "Neutral" },]
+      let value: string = this.lastCapitals[this.index].country
+      this.dataSource = [{ "Country": this.toNeutralString(value), "population": "Neutral" },]
       console.log(this.lastCapitals[this.index])
     }
 
@@ -104,6 +105,14 @@ export class MapComponent implements OnInit {
     }
   }
 
+  toNeutralString (name:string |undefined){
+    if (name ){
+      return name.toLowerCase().replaceAll('ô',"o").replaceAll(' ', '').replaceAll('-', '').replaceAll("'", '')
+    }
+    else return ""
+    
+  }
+
   /*function after answer
   param : rep --> true or false answer
   wrong --> string of the wrong answer
@@ -116,16 +125,16 @@ export class MapComponent implements OnInit {
     this.answered = true
     this.isCorrect = rep
     this.answerCounter += 1
+    this.lastCapitals = this.lastCapitals.filter(cap => cap.id != this.correctReponse.id)
 
     if (rep) {
       this.counter += 1;
-      this.lastCapitals = this.lastCapitals.filter(cap => cap.id != this.correctReponse.id)
-      this.dataSource = [{ "Country": this.correctReponse.country, "population": "Good" }]
+      this.dataSource = [{ "Country": this.toNeutralString(this.correctReponse.country), "population": "Good" }]
       this.buttonText = "Well Done !!! the answer was " + this.correctReponse.country;
     }
     else {
-      this.dataSource = [{ "Country": wrong, "population": "Wrong" },
-      { "Country": this.correctReponse.country, "population": "Neutral" }];
+      this.dataSource = [{ "Country": this.toNeutralString(wrong), "population": "Wrong" },
+      { "Country": this.toNeutralString(this.correctReponse.country), "population": "Neutral" }];
       this.buttonText = "Wrong the answer was " + this.correctReponse.country;
     }
     if (this.counter === 197) {
@@ -214,7 +223,7 @@ export class MapComponent implements OnInit {
       this.correctReponse = value[this.index];
       this.otherResponse = [value[this.wrongIndex[0]], value[this.wrongIndex[1]], value[this.wrongIndex[2]]]
       this.dataSource = [
-        { "Country": value[this.index].country, "population": "Neutral" },
+        { "Country": this.toNeutralString(value[this.index].country), "population": "Neutral" },
         //{ "Country": "Antigua and Barbuda", "population": "Neutral" },
         // { "Country": "Vatican", "population": "Neutral" },
       ];

@@ -78,7 +78,6 @@ export class QuestionComponent {
     this.answered = false;
     this.result = "";
     this.loading = "Loading ..."
-    //this.question = this.questionService.getQuestion();
     this.questionService.getQuestion().subscribe(value => {
       this.question = value;
       this.loading = "";
@@ -127,7 +126,6 @@ export class QuestionComponent {
   }
 
   ngOnInit(): void {
-    //this.question = this.questionService.getQuestion();
     this.questionService.getQuestion().subscribe(value => {
       this.question = value;
       this.loading = "";
