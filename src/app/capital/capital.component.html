@@ -1,5 +1,5 @@
 <div class="capital">
-    <img src="../../assets/logo_qG.png" routerLink="">
+    <img src="../../assets/logo_qG.png" alt="logo quizzGame" routerLink="">
 
     <div class="capital-question">
         <div>
@@ -9,6 +9,7 @@
 
             <div class="capital-question">Question : {{answerCounter}} / {{questionNB}} </div>      
             <div class="capital-question">Find {{counter}} capitals</div>
+            <div class="capital-question">Percentage : {{percentage}}%</div>
             <div *ngIf="isCapital" class="capital-question">What is the capital of {{correctReponse.country}} ?</div>
             <div *ngIf="!isCapital" class="capital-question">{{correctReponse.capital}} is the capital city of which country ?
             </div>

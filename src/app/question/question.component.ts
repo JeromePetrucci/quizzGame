@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 
-import { Answer, Category, Question } from '../question';
+import { Answer, Category, EMPTY_QUESTION, Question } from '../question';
 import { QuestionService } from '../question.service'
 
 @Component({
@@ -14,7 +13,8 @@ export class QuestionComponent {
   constructor(private questionService: QuestionService) { }
 
   //question
-  question!: Observable<Question[]>;
+  //question!: Observable<Question[]>;
+  question: Question[] = [EMPTY_QUESTION];
   alreadyAsked: number = 0;
 
   //counters
@@ -31,10 +31,11 @@ export class QuestionComponent {
   index3: boolean = this.getIndex(3);
 
   //result
-  result: string = ""; //"loading ...";
+  result: string = "";
   answered: boolean = false;
   isCorrect: boolean = false;
   isOver: boolean = false;
+  loading: string = "Loading..."
 
   //information of menu selection
   categoryAll: boolean = this.questionService.allCategories || this.questionService.categories.length < 1;
@@ -68,25 +69,29 @@ export class QuestionComponent {
     this.percentage = this.getPercentage();
     this.sendQuestion(question, correct);
 
-    if (this.questionCounter === this.questionNB ) {this.isOver = true}
+    if (this.questionCounter === this.questionNB) { this.isOver = true }
   }
 
   //relaod a new question
   nextQuestion(): void {
-      this.isOver = false
-      this.answered = false;
-      this.result = "loading ...";
+    this.isOver = false
+    this.answered = false;
+    this.result = "";
+    this.loading = "Loading ..."
+    this.questionService.getQuestion().subscribe(value => {
+      this.question = value;
+      this.loading = "";
+    })
 
-      this.question = this.questionService.getQuestion();
-      this.randomI = this.getRandomInt();
-      this.index0 = this.getIndex(0);
-      this.index1 = this.getIndex(1);
-      this.index2 = this.getIndex(2);
-      this.index3 = this.getIndex(3);
-      console.log(this.randomI)
+    this.randomI = this.getRandomInt();
+    this.index0 = this.getIndex(0);
+    this.index1 = this.getIndex(1);
+    this.index2 = this.getIndex(2);
+    this.index3 = this.getIndex(3);
+    console.log(this.randomI)
   }
 
-  nextSerie(): void{
+  nextSerie(): void {
     this.isOver = false;
     this.counterGoodAnswer = 0;
     this.questionCounter = 0;
@@ -121,6 +126,9 @@ export class QuestionComponent {
   }
 
   ngOnInit(): void {
-    this.question = this.questionService.getQuestion();
+    this.questionService.getQuestion().subscribe(value => {
+      this.question = value;
+      this.loading = "";
+    })
   }
 }

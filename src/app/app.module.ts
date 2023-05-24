@@ -30,6 +30,9 @@ import { StatComponent } from './stat/stat.component';
 import { CapitalComponent } from './capital/capital.component';
 import { MapComponent } from './map/map.component';
 import { FlagComponent } from './flag/flag.component';
+import { FindComponent } from './find/find.component';
+import { FranceComponent } from './france/france.component';
+import { UsStateComponent } from './us-state/us-state.component';
 
 
 
@@ -42,6 +45,9 @@ import { FlagComponent } from './flag/flag.component';
     CapitalComponent,
     MapComponent,
     FlagComponent,
+    FindComponent,
+    FranceComponent,
+    UsStateComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +59,10 @@ import { FlagComponent } from './flag/flag.component';
       { path: 'capital', component: CapitalComponent },
       { path: 'map', component: MapComponent },
       { path: 'flag', component: FlagComponent },
+      { path: 'find', component: FindComponent },
+      { path: 'france', component: FranceComponent },
+      { path: 'us-state', component: UsStateComponent },
+      
     ])
     ],
     HttpClientModule,

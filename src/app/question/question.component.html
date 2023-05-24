@@ -1,9 +1,6 @@
-<!-- <button mat-raised-button color="primary" routerLink="">Menu</button> -->
-
 <div class="question">
-    <img src="../../assets/logo_qG.png" routerLink="">
+    <img src="../../assets/logo_qG.png" alt="logo quizzGame" routerLink="">
 
-    <!-- <div class="question-title">Question </div> -->
     <!-- Information of this run -->
     <div class="question-div">
         <div class="question-info">
@@ -19,7 +16,7 @@
             <div class="question-counter">Actual streak : {{actualRow.counter}} {{actualRow.type}}(s)</div>
         </div>
         <!-- Question -->
-        <div class="question-part" *ngFor="let quest of question | async">
+        <div class="question-part" *ngFor="let quest of question "><!-- | async -->
             <div class="question-question">Category : {{quest.category}}</div>
             <div class="question-question">Difficulty : {{quest.difficulty}}</div>
             <div class="question-question">{{quest.question}}</div>
@@ -67,7 +64,9 @@
                     New Questions
                 </button>
             </div>
+            <div>{{loading}}</div>  
         </div>
+            
     </div>
 
 </div>

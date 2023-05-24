@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { QuestionService } from '../question.service';
 import { Category } from '../question';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -62,10 +61,6 @@ setNBmap(){
     this.questionService.questionNB = this.mapNB;
   }
   else {this.questionService.questionNB = 197;}
-}
-
-
-ngOnInit(): void {
 }
 
 }

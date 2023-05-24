@@ -14,16 +14,12 @@ Maps.Inject(Zoom, Selection);
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  constructor(private questionService: QuestionService,
-  ) { }
+  
+  constructor(private questionService: QuestionService,) { }
 
-  getIndex(i: number): boolean {
-    return (i === this.randomI)
-  }
+  getIndex(i: number): boolean {return (i === this.randomI)}
 
-  getRandomInt(max: number): number {
-    return Math.floor(Math.random() * (max + 1))
-  }
+  getRandomInt(max: number): number {return Math.floor(Math.random() * (max + 1))}
 
   getWrongAnswerInd(correct: number, length: number): number[] {
     let listNum: number[] = []
@@ -72,16 +68,16 @@ export class MapComponent implements OnInit {
     this.index3 = this.getIndex(3);
 
     if (this.counter < 197) {
-      this.dataSource = [{ "Country": this.lastCapitals[this.index].country, "population": "Neutral" },]
+      let value: string = this.lastCapitals[this.index].country
+      this.dataSource = [{ "Country": this.toNeutralString(value), "population": "Neutral" },]
       console.log(this.lastCapitals[this.index])
     }
-
     this.isHint = false;
     this.buttonText="";
     this.formValue = ""
-
   }
 
+  //function to make a new serie
   nextSerie(){
     this.isOver = false;
     this.answerCounter = 0;
@@ -103,6 +99,14 @@ export class MapComponent implements OnInit {
     }
   }
 
+  toNeutralString (name:string |undefined){
+    if (name ){
+      return name.toLowerCase().replaceAll('ô',"o").replaceAll(' ', '').replaceAll('-', '').replaceAll("'", '')
+    }
+    else return ""
+    
+  }
+
   /*function after answer
   param : rep --> true or false answer
   wrong --> string of the wrong answer
@@ -115,16 +119,16 @@ export class MapComponent implements OnInit {
     this.answered = true
     this.isCorrect = rep
     this.answerCounter += 1
+    this.lastCapitals = this.lastCapitals.filter(cap => cap.id != this.correctReponse.id)
 
     if (rep) {
       this.counter += 1;
-      this.lastCapitals = this.lastCapitals.filter(cap => cap.id != this.correctReponse.id)
-      this.dataSource = [{ "Country": this.correctReponse.country, "population": "Good" }]
+      this.dataSource = [{ "Country": this.toNeutralString(this.correctReponse.country), "population": "Good" }]
       this.buttonText = "Well Done !!! the answer was " + this.correctReponse.country;
     }
     else {
-      this.dataSource = [{ "Country": wrong, "population": "Wrong" },
-      { "Country": this.correctReponse.country, "population": "Neutral" }];
+      this.dataSource = [{ "Country": this.toNeutralString(wrong), "population": "Wrong" },
+      { "Country": this.toNeutralString(this.correctReponse.country), "population": "Neutral" }];
       this.buttonText = "Wrong the answer was " + this.correctReponse.country;
     }
     if (this.counter === 197) {
@@ -166,14 +170,12 @@ export class MapComponent implements OnInit {
   filteredOptions: Observable<Capital[]> = this.questionService.getCapitals();
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
-  newList = this.questionService.getCapitals();
 
   private _filter(value: string): Capital[] {
     const filterValue = value.toLowerCase();
 
     return this.listCapitals.filter(c => c.country.toLowerCase().includes(filterValue)).sort((a,b) => a.id - b.id);
   }
-
 
   /*************************************Map settings******************************/
   //Zoom setting
@@ -205,16 +207,15 @@ export class MapComponent implements OnInit {
     ]
   };
 
-
   ngOnInit(): void {
-    //let newList = this.questionService.getCapitals();
+    //Get all the countries 
     this.questionService.getCapitals().subscribe(value => {
       this.listCapitals = value;
       this.listName = value.map(c => { return c.country })
       this.correctReponse = value[this.index];
       this.otherResponse = [value[this.wrongIndex[0]], value[this.wrongIndex[1]], value[this.wrongIndex[2]]]
       this.dataSource = [
-        { "Country": value[this.index].country, "population": "Neutral" },
+        { "Country": this.toNeutralString(value[this.index].country), "population": "Neutral" },
         //{ "Country": "Antigua and Barbuda", "population": "Neutral" },
         // { "Country": "Vatican", "population": "Neutral" },
       ];
@@ -225,8 +226,5 @@ export class MapComponent implements OnInit {
       );
     }
     );
-
-
-
   }
 }

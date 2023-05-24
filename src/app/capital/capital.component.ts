@@ -60,9 +60,11 @@ export class CapitalComponent {
       this.answerCounter = 0
     }
     if (this.answerCounter === this.questionNB || this.answerCounter === 197) {this.isOver = true}
+    this.percentage = this.getPercentage();
   }
 
   nextQuestion() {
+
     this.answered = false;
     this.isCorrect = false;
     this.index = this.getRandomInt(this.lastCapitals.length - 1)
@@ -80,6 +82,7 @@ export class CapitalComponent {
     this.isOver = false;
     this.answerCounter = 0;
     this.counter = 0;
+    this.percentage = this.getPercentage();
     this.nextQuestion();
   }
 
@@ -107,6 +110,7 @@ export class CapitalComponent {
   questionNB = this.questionService.questionNB;
   counter: number = 0;
   answerCounter: number = 0;
+  percentage: number = this.getPercentage();
   lastCapitals: Capital[] = []
 
   ngOnInit(): void {
@@ -116,6 +120,13 @@ export class CapitalComponent {
       this.otherResponse = [value[this.wrongIndex[0]], value[this.wrongIndex[1]], value[this.wrongIndex[2]]]
     }
     );
+  }
+
+  getPercentage(): number {
+    if (this.answerCounter === 0) { return 0 }
+    else {
+      return Math.round((this.counter / this.answerCounter) * 10000) / 100;
+    }
   }
 }
 
