@@ -14,16 +14,12 @@ Maps.Inject(Zoom, Selection);
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  constructor(private questionService: QuestionService,
-  ) { }
+  
+  constructor(private questionService: QuestionService,) { }
 
-  getIndex(i: number): boolean {
-    return (i === this.randomI)
-  }
+  getIndex(i: number): boolean {return (i === this.randomI)}
 
-  getRandomInt(max: number): number {
-    return Math.floor(Math.random() * (max + 1))
-  }
+  getRandomInt(max: number): number {return Math.floor(Math.random() * (max + 1))}
 
   getWrongAnswerInd(correct: number, length: number): number[] {
     let listNum: number[] = []
@@ -76,11 +72,9 @@ export class MapComponent implements OnInit {
       this.dataSource = [{ "Country": this.toNeutralString(value), "population": "Neutral" },]
       console.log(this.lastCapitals[this.index])
     }
-
     this.isHint = false;
     this.buttonText="";
     this.formValue = ""
-
   }
 
   //function to make a new serie
@@ -183,7 +177,6 @@ export class MapComponent implements OnInit {
     return this.listCapitals.filter(c => c.country.toLowerCase().includes(filterValue)).sort((a,b) => a.id - b.id);
   }
 
-
   /*************************************Map settings******************************/
   //Zoom setting
   public zoomSettings: object = {
@@ -214,7 +207,6 @@ export class MapComponent implements OnInit {
     ]
   };
 
-
   ngOnInit(): void {
     //Get all the countries 
     this.questionService.getCapitals().subscribe(value => {
@@ -234,8 +226,5 @@ export class MapComponent implements OnInit {
       );
     }
     );
-
-
-
   }
 }

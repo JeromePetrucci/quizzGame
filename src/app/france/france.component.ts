@@ -42,7 +42,7 @@ export class FranceComponent {
 
   onReset(){
     this.isOver = false;
-    this.formValue=""
+    this.formValue="";
     this.counter = 0;
     this.listName = this.listCapitals.map(c => { return this.toNeutralString(c.name) })
     this.dataSource = [];
