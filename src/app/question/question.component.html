@@ -16,40 +16,40 @@
             <div class="question-counter">Actual streak : {{actualRow.counter}} {{actualRow.type}}(s)</div>
         </div>
         <!-- Question -->
-        <div class="question-part" *ngFor="let quest of question "><!-- | async -->
-            <div class="question-question">Category : {{quest.category}}</div>
-            <div class="question-question">Difficulty : {{quest.difficulty}}</div>
-            <div class="question-question">{{quest.question}}</div>
+        <div class="question-part" ><!-- | async -->
+            <div class="question-question">Category : {{question[currentQuestion].category}}</div>
+            <div class="question-question">Difficulty : {{question[currentQuestion].difficulty}}</div>
+            <div class="question-question">{{question[currentQuestion].question}}</div>
             <!-- ANSWERS -->
             <div class="question-answers">
                 <button *ngIf="index0" disabled="{{answered}}" class="question-answer" mat-raised-button
-                    [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true, quest)">
-                    {{quest.correctAnswer}}
+                    [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true, question[currentQuestion])">
+                    {{question[currentQuestion].correctAnswer}}
                 </button>
                 <button class="question-answer" disabled="{{answered}}" mat-raised-button
-                    [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" (click)="onAnswer(false, quest)">
-                    {{quest.incorrectAnswers[0]}}
+                    [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" (click)="onAnswer(false, question[currentQuestion])">
+                    {{question[currentQuestion].incorrectAnswers[0]}}
                 </button>
                 <button *ngIf="index1" class="question-answer" disabled="{{answered}}" mat-raised-button
-                    (click)="onAnswer(true, quest)" [ngClass]="{'blue' : !answered, 'green': answered}">
-                    {{quest.correctAnswer}}
+                    (click)="onAnswer(true, question[currentQuestion])" [ngClass]="{'blue' : !answered, 'green': answered}">
+                    {{question[currentQuestion].correctAnswer}}
                 </button>
                 <button class="question-answer" disabled="{{answered}}" mat-raised-button
-                    (click)="onAnswer(false, quest)" [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}">
-                    {{quest.incorrectAnswers[1]}}
+                    (click)="onAnswer(false, question[currentQuestion])" [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}">
+                    {{question[currentQuestion].incorrectAnswers[1]}}
                 </button>
                 <button *ngIf="index2" disabled="{{answered}}" class="question-answer" mat-raised-button
-                    [ngClass]="{'blue' : !answered, 'green': answered }" (click)="onAnswer(true, quest)">
-                    {{quest.correctAnswer}}
+                    [ngClass]="{'blue' : !answered, 'green': answered }" (click)="onAnswer(true, question[currentQuestion])">
+                    {{question[currentQuestion].correctAnswer}}
                 </button>
-                <button class="question-answer" mat-raised-button (click)="onAnswer(false, quest)"
+                <button class="question-answer" mat-raised-button (click)="onAnswer(false, question[currentQuestion])"
                     [ngClass]="{'blue' : !answered, 'red': answered && !isCorrect}" disabled="{{answered}}">
-                    {{quest.incorrectAnswers[2]}}
+                    {{question[currentQuestion].incorrectAnswers[2]}}
                 </button>
                 <button *ngIf="index3" class="question-answer" mat-raised-button
-                    [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true, quest)"
+                    [ngClass]="{'blue' : !answered, 'green': answered}" (click)="onAnswer(true, question[currentQuestion])"
                     disabled="{{answered}}">
-                    {{quest.correctAnswer}}
+                    {{question[currentQuestion].correctAnswer}}
                 </button>
             </div>
             <div class="question-question">{{result}}</div>

@@ -11,8 +11,6 @@ Maps.Inject(Zoom, Selection);
   styleUrls: ['./france.component.css']
 })
 
-
-
 export class FranceComponent {
   constructor(private questionService: QuestionService) { }
 
@@ -46,7 +44,6 @@ export class FranceComponent {
     this.counter = 0;
     this.listName = this.listCapitals.map(c => { return this.toNeutralString(c.name) })
     this.dataSource = [];
-    
   }
 
   //Accept more input

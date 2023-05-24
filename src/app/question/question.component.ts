@@ -13,9 +13,9 @@ export class QuestionComponent {
   constructor(private questionService: QuestionService) { }
 
   //question
-  //question!: Observable<Question[]>;
   question: Question[] = [EMPTY_QUESTION];
   alreadyAsked: number = 0;
+  currentQuestion = 0;
 
   //counters
   questionCounter: number = 0;
@@ -46,7 +46,9 @@ export class QuestionComponent {
   onAnswer(correct: boolean, question: Question) {
     this.answered = true;
     this.questionCounter += 1;
-    this.isCorrect = correct
+    this.isCorrect = correct;
+
+    
 
     if (correct) {
       this.counterGoodAnswer += 1;
@@ -78,17 +80,25 @@ export class QuestionComponent {
     this.answered = false;
     this.result = "";
     this.loading = "Loading ..."
-    this.questionService.getQuestion().subscribe(value => {
+    
+    if (this.currentQuestion > 8 ) { 
+      this.currentQuestion = 0 
+      this.questionService.getQuestion().subscribe(value => {
       this.question = value;
       this.loading = "";
-    })
-
-    this.randomI = this.getRandomInt();
+      this.randomI = this.getRandomInt();
     this.index0 = this.getIndex(0);
     this.index1 = this.getIndex(1);
     this.index2 = this.getIndex(2);
     this.index3 = this.getIndex(3);
-    console.log(this.randomI)
+    })}
+    else {this.currentQuestion += 1
+      this.loading = "";
+      this.randomI = this.getRandomInt();
+      this.index0 = this.getIndex(0);
+      this.index1 = this.getIndex(1);
+      this.index2 = this.getIndex(2);
+      this.index3 = this.getIndex(3);}
   }
 
   nextSerie(): void {
@@ -119,7 +129,6 @@ export class QuestionComponent {
   }
 
   sendQuestion(question: Question, answer: boolean): void {
-    console.log("sending");
     this.questionService.addQuestion(question);
     let newAnswer: Answer = { category: question.category, answer: answer, difficulty: question.difficulty, id: question.id, asked: 1 }
     this.alreadyAsked = this.questionService.addAnswer(newAnswer)
@@ -129,6 +138,7 @@ export class QuestionComponent {
     this.questionService.getQuestion().subscribe(value => {
       this.question = value;
       this.loading = "";
+      console.log(value);
     })
   }
 }

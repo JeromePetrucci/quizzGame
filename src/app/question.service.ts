@@ -21,7 +21,7 @@ export class QuestionService {
   }
 
   getQuestion () { 
-    let newRequest: string = 'https://the-trivia-api.com/api/questions?limit=1';
+    let newRequest: string = 'https://the-trivia-api.com/api/questions?limit=10';
     if (!this.allCategories && this.categories.length > 0 ) {
       newRequest = newRequest + "&categories="
       this.categories.forEach((c, i)  => {
@@ -54,11 +54,8 @@ export class QuestionService {
     let options = { headers: headers };
     let add: Observable<number> = this.http.post<number>(url, newAnswer, options);
     
-    add.subscribe(x => {console.log("answer send");
-    this.quetionAsked = x;
-  })
+    add.subscribe(x => {this.quetionAsked = x;})
   return this.quetionAsked
-   
   }
 
   getStat() :Observable<Answer[]> {
